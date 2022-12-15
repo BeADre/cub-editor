@@ -5,7 +5,7 @@ import {
   h, Fragment,
   cls, last, formatURL
 } from './helpers.js';
-import styles from './styles.css';
+import styles from './styles.module.css';
 import { get as getFileURL } from './files.js';
 
 function onTodoClick({ target }) {

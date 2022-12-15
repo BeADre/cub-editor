@@ -1,4 +1,4 @@
-import styles from './highlight.css';
+import styles from './highlight.module.css';
 import { setOffset } from '../core/shared.js';
 
 import Prism from 'prismjs';

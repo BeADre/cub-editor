@@ -1,6 +1,6 @@
 import Editor from './core/editor.js';
 import renderer from './renderer/index.js';
-import styles from './renderer/styles.css';
+import styles from './renderer/styles.module.css';
 import parser from './parser/block/index.js';
 import enterPlugin from './plugins/enter.js';
 import tabPlugin from './plugins/tab.js';
