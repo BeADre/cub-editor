@@ -1,4 +1,4 @@
-import { mac } from './user-agent.js';
+import { mac } from './user-agent.js'
 
 /**
  * @param {String[]} acc
@@ -9,7 +9,7 @@ function normalizeKeys(acc) {
     .filter((e, i, a) => a.indexOf(e) === i)
     .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
     .join('+')
-    .toLowerCase();
+    .toLowerCase()
 }
 
 /**
@@ -17,7 +17,7 @@ function normalizeKeys(acc) {
  * @returns {String}
  */
 function normalizeAcc(acc) {
-  return normalizeKeys(acc.replace('Mod', mac ? 'Meta' : 'Ctrl').split('+'));
+  return normalizeKeys(acc.replace('Mod', mac ? 'Meta' : 'Ctrl').split('+'))
 }
 
 /**
@@ -25,13 +25,13 @@ function normalizeAcc(acc) {
  * @returns {String}
  */
 function parseEventKeys(event) {
-  const { key } = event;
-  const keys = [key];
-  if (event.altKey) keys.push('Alt');
-  if (event.ctrlKey) keys.push('Ctrl');
-  if (event.metaKey) keys.push('Meta');
-  if (event.shiftKey) keys.push('Shift');
-  return normalizeKeys(keys);
+  const { key } = event
+  const keys = [key]
+  if (event.altKey) keys.push('Alt')
+  if (event.ctrlKey) keys.push('Ctrl')
+  if (event.metaKey) keys.push('Meta')
+  if (event.shiftKey) keys.push('Shift')
+  return normalizeKeys(keys)
 }
 
 /**
@@ -42,7 +42,7 @@ function parseEventKeys(event) {
  * @returns {Boolean}
  */
 export default function(acc, event) {
-  const shortcut = normalizeAcc(acc);
-  const eventKeys = parseEventKeys(event);
-  return shortcut === eventKeys;
+  const shortcut = normalizeAcc(acc)
+  const eventKeys = parseEventKeys(event)
+  return shortcut === eventKeys
 }

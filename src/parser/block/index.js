@@ -6,9 +6,9 @@ import {
   unordered_list,
   blockquote,
   paragraph
-} from './basic.js';
-import parseInline from '../inline/index.js';
-import code from './code.js';
+} from './basic.js'
+import parseInline from '../inline/index.js'
+import code from './code.js'
 
 const parsers = [
   heading,
@@ -19,23 +19,23 @@ const parsers = [
   blockquote,
   code,
   paragraph
-];
+]
 
 export default function* parseBlock(value, typeOnly = false) {
-  let index = 0;
-  const lines = Array.isArray(value) ? value : value.split('\n');
+  let index = 0
+  const lines = Array.isArray(value) ? value : value.split('\n')
 
   while (index < lines.length) {
     for (const parser of parsers) {
       const result = parser({
         parseInline: typeOnly ? string => [string] : parseInline,
         lines, index
-      });
+      })
       if (result) {
-        index += result.length;
+        index += result.length
 
-        yield result;
-        break;
+        yield result
+        break
       }
     }
   }

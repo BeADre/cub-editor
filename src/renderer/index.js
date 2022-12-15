@@ -4,54 +4,54 @@ import {
   /* eslint-disable-next-line no-unused-vars */
   h, Fragment,
   cls, last, formatURL
-} from './helpers.js';
-import styles from './styles.module.css';
-import { get as getFileURL } from './files.js';
+} from './helpers.js'
+import styles from './styles.module.css'
+import { get as getFileURL } from './files.js'
 
 function onTodoClick({ target }) {
-  const checked = target.getAttribute('aria-checked') === 'true';
-  target.dataset.text = `- [${!checked ? 'x' : ' '}]`;
-  target.dispatchEvent(new Event('input', { bubbles: true }));
+  const checked = target.getAttribute('aria-checked') === 'true'
+  target.dataset.text = `- [${!checked ? 'x' : ' '}]`
+  target.dispatchEvent(new Event('input', { bubbles: true }))
 }
 
 function preventDefault(event) {
-  event.preventDefault();
+  event.preventDefault()
 }
 
 function onTagClick(event) {
-  console.log('Tag click', event);
+  console.log('Tag click', event)
 }
 
 function onHeadingClick(event) {
-  console.log('Heading click', event);
+  console.log('Heading click', event)
 }
 
 function onLinkClick() {
-  const href = formatURL(this.getAttribute('href'));
-  window.open(href, '_blank');
+  const href = formatURL(this.getAttribute('href'))
+  window.open(href, '_blank')
 }
 
 function onLinkButtonClick(event) {
-  console.log('Link button click', event);
+  console.log('Link button click', event)
 }
 
 function selectElement() {
-  const selection = this.getRootNode().getSelection();
+  const selection = this.getRootNode().getSelection()
 
-  selection.removeAllRanges();
-  const range = document.createRange();
+  selection.removeAllRanges()
+  const range = document.createRange()
 
-  range.selectNode(this);
-  selection.addRange(range);
+  range.selectNode(this)
+  selection.addRange(range)
 }
 
 export default {
   paragraph({ content }) {
-    return <p class={styles.p}>{content}</p>;
+    return <p class={styles.p}>{content}</p>
   },
   heading({ content: [hashes, ...content] }) {
-    const level = hashes.length;
-    const Heading = `h${level}`;
+    const level = hashes.length
+    const Heading = `h${level}`
 
     return (
       <Heading class={cls(styles.heading, styles[Heading])}>
@@ -70,7 +70,7 @@ export default {
         </button>
         {content}
       </Heading>
-    );
+    )
   },
   ordered_list_item({ content: [indentation, level, markup, ...content] }) {
     return (
@@ -79,7 +79,7 @@ export default {
         <span class={styles.ordered_list_item_number}>{level}</span>
         <span class={styles.ordered_list_item_dot}>{markup}</span>{content}
       </li>
-    );
+    )
   },
   unordered_list_item({ content: [indentation, markup, ...content] }) {
     return (
@@ -87,10 +87,10 @@ export default {
         {indentation}
         <span class={styles.unordered_list_item_dot}>{markup}</span>{content}
       </li>
-    );
+    )
   },
   todo_item({ content: [indentation, text, space, ...content] }) {
-    const checked = text === '- [x]';
+    const checked = text === '- [x]'
 
     return (
       <li class={styles.todo_item}>
@@ -124,14 +124,14 @@ export default {
         {space}
         <span class={checked ? styles.todo_item_done : ''}>{content}</span>
       </li>
-    );
+    )
   },
   blockquote({ content: [markup, ...content] }) {
     return (
       <blockquote class={styles.blockquote}>
         <span class={styles.blockquote_markup}>{markup}</span>{content}
       </blockquote>
-    );
+    )
   },
   horizontal_rule({ content }) {
     return (
@@ -139,7 +139,7 @@ export default {
       <p class={styles.p}>
         <img role="presentation" class={styles.hr} data-text={content} />
       </p>
-    );
+    )
   },
   code_block({ content: [openMarkup, language, ...content] }) {
     return (
@@ -157,7 +157,7 @@ export default {
           {last(content)}
         </span>
       </code>
-    );
+    )
   },
 
   em({ content }) {
@@ -167,7 +167,7 @@ export default {
         <em>{content.slice(1, -1)}</em>
         <span class={styles.inline_markup}>{last(content)}</span>
       </>
-    );
+    )
   },
   strong({ content }) {
     return (
@@ -176,7 +176,7 @@ export default {
         <strong>{content.slice(1, -1)}</strong>
         <span class={styles.inline_markup}>{last(content)}</span>
       </>
-    );
+    )
   },
   link({ content: [openBrckt, text, closeBrckt, openPar, link, closePar] }) {
     return (
@@ -215,7 +215,7 @@ export default {
           <span class={styles.inline_markup}>{closePar}</span>
         </span>
       </>
-    );
+    )
   },
   code({ content }) {
     return (
@@ -232,7 +232,7 @@ export default {
           <span class={styles.code_span_close}>{last(content)}</span>
         </span>
       </code>
-    );
+    )
   },
   reference({ content }) {
     return (
@@ -241,7 +241,7 @@ export default {
         <span class={styles.reference}>{content.slice(1, -1)}</span>
         <span class={styles.inline_markup}>{last(content)}</span>
       </>
-    );
+    )
   },
   mark({ content }) {
     return (
@@ -250,14 +250,14 @@ export default {
         {content.slice(1, -1)}
         <span class={styles.mark_markup}>{last(content)}</span>
       </mark>
-    );
+    )
   },
   strikethrough({ content }) {
     return (
       <span class={styles.strikethrough}>
         {content[0]}<s>{content.slice(1, -1)}</s>{last(content)}
       </span>
-    );
+    )
   },
   underline({ content }) {
     return (
@@ -266,7 +266,7 @@ export default {
         <u class={styles.underline}>{content.slice(1, -1)}</u>
         <span class={styles.inline_markup}>{last(content)}</span>
       </>
-    );
+    )
   },
   tag({ content }) {
     return (
@@ -276,10 +276,10 @@ export default {
         {content.slice(1, -1)}
         <span class={styles.tag_markup}>{last(content)}</span>
       </span>
-    );
+    )
   },
   image({ content }) {
-    const [id, name] = content[1].split('/');
+    const [id, name] = content[1].split('/')
 
     return <img
       src={getFileURL(id)}
@@ -287,10 +287,10 @@ export default {
       class={styles.image}
       data-text={content.join('')}
       onclick={selectElement}
-    />;
+    />
   },
   file({ content }) {
-    const [id, name] = content[1].split('/');
+    const [id, name] = content[1].split('/')
 
     return (
       <button
@@ -313,6 +313,6 @@ export default {
           </svg>
         </div>
       </button>
-    );
+    )
   }
-};
+}

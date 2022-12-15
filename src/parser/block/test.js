@@ -1,5 +1,5 @@
-import assert from 'assert';
-import parseBlock from './index.js';
+import assert from 'assert'
+import parseBlock from './index.js'
 
 const cases = [
   // paragraph
@@ -182,20 +182,20 @@ console.log(2);
       }
     ]
   }
-];
+]
 
 function flatten(list, block) {
   return list.map(token => {
-    if (!token.content) return token;
-    return flatten(token.content, false);
-  }).join(block ? '\n' : '');
+    if (!token.content) return token
+    return flatten(token.content, false)
+  }).join(block ? '\n' : '')
 }
 
 for (const { input, expected } of cases) {
-  const result = Array.from(parseBlock(input));
-  assert.deepEqual(result, expected);
+  const result = Array.from(parseBlock(input))
+  assert.deepEqual(result, expected)
   // 1-to-1 mapping of text
-  assert.equal(flatten(result, true), input);
+  assert.equal(flatten(result, true), input)
 }
 
-console.log('OK');
+console.log('OK')

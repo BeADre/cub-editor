@@ -1,5 +1,5 @@
-import assert from 'assert';
-import parseInline from './index.js';
+import assert from 'assert'
+import parseInline from './index.js'
 
 const cases = [
   // em
@@ -276,19 +276,19 @@ const cases = [
     input: '[foo]()',
     expected: ['[foo]()']
   }
-];
+]
 
 function flatten(list) {
   return list.map(token => {
-    return token.content ? flatten(token.content) : token;
-  }).join('');
+    return token.content ? flatten(token.content) : token
+  }).join('')
 }
 
 for (const { input, expected } of cases) {
-  const result = parseInline(input);
-  assert.deepEqual(result, expected);
+  const result = parseInline(input)
+  assert.deepEqual(result, expected)
   // 1-to-1 mapping of text
-  assert.equal(flatten(result), input);
+  assert.equal(flatten(result), input)
 }
 
-console.log('OK');
+console.log('OK')

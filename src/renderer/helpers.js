@@ -1,34 +1,34 @@
-export const Fragment = Symbol('Fragment');
+export const Fragment = Symbol('Fragment')
 
-const SVG_ELEMENTS = ['svg', 'path'];
+const SVG_ELEMENTS = ['svg', 'path']
 
 export function h(tag, props, ...children) {
   if (tag === Fragment) {
-    return children;
+    return children
   }
 
-  const isSvg = SVG_ELEMENTS.includes(tag);
+  const isSvg = SVG_ELEMENTS.includes(tag)
   const el = isSvg ?
     document.createElementNS('http://www.w3.org/2000/svg', tag) :
-    document.createElement(tag);
+    document.createElement(tag)
   for (const key in props) {
-    const type = typeof props[key];
+    const type = typeof props[key]
     if (type === 'function') {
-      el[key] = props[key];
+      el[key] = props[key]
     } else {
-      el.setAttribute(key, props[key]);
+      el.setAttribute(key, props[key])
     }
   }
-  el.append(...children.flat(Infinity));
-  return el;
+  el.append(...children.flat(Infinity))
+  return el
 }
 
 export function cls(...str) {
-  return str.filter(s => s).join(' ');
+  return str.filter(s => s).join(' ')
 }
 
 export function last(list) {
-  return list[list.length - 1];
+  return list[list.length - 1]
 }
 
 /**
@@ -38,8 +38,8 @@ export function last(list) {
  */
 export function formatURL(str) {
   try {
-    return new URL(str).href;
+    return new URL(str).href
   } catch (_) {
-    return 'http://' + str.replace(/^\/{0,2}/, '');
+    return 'http://' + str.replace(/^\/{0,2}/, '')
   }
 }

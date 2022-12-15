@@ -3,18 +3,18 @@ import {
   replaceSelection,
   getNewState,
   serializeState
-} from '../core/shared.js';
+} from '../core/shared.js'
 
 const INDENTABLE_BLOCKS = [
   'todo_item',
   'ordered_list_item',
   'unordered_list_item'
-];
+]
 
-const INDENTATION = /^\t| {0,4}/;
+const INDENTATION = /^\t| {0,4}/
 
 function shouldIndent(blocks) {
-  return blocks.some(block => INDENTABLE_BLOCKS.includes(block.type));
+  return blocks.some(block => INDENTABLE_BLOCKS.includes(block.type))
 }
 
 export default function tabPlugin() {
@@ -22,50 +22,50 @@ export default function tabPlugin() {
     handlers: {
       keydown(editor, event) {
         // Tab
-        if (event.which !== 9) return;
+        if (event.which !== 9) return
 
         if (
           event.metaKey ||
           event.ctrlKey
-        ) return false;
+        ) return false
 
-        event.preventDefault();
+        event.preventDefault()
 
         const {
           firstBlock,
           lastBlock
-        } = orderedSelection(editor.selection);
+        } = orderedSelection(editor.selection)
 
-        const selectedBlocks = editor.state.slice(firstBlock, lastBlock + 1);
+        const selectedBlocks = editor.state.slice(firstBlock, lastBlock + 1)
 
         if (event.altKey || !shouldIndent(selectedBlocks)) {
-          replaceSelection(editor, '\t');
+          replaceSelection(editor, '\t')
         } else {
           const {
             anchorBlock,
             focusBlock,
             anchorOffset,
             focusOffset
-          } = editor.selection;
+          } = editor.selection
 
-          const offsetChange = event.shiftKey ? -1 : 1;
+          const offsetChange = event.shiftKey ? -1 : 1
           const text = selectedBlocks.map(block => {
-            const text = serializeState(block.content);
+            const text = serializeState(block.content)
 
-            if (event.shiftKey) return text.replace(INDENTATION, '');
-            return '\t' + text;
-          }).join('\n');
+            if (event.shiftKey) return text.replace(INDENTATION, '')
+            return '\t' + text
+          }).join('\n')
           editor.update(
             getNewState(editor, firstBlock, lastBlock, text),
             {
               anchor: [anchorBlock, anchorOffset + offsetChange],
               focus: [focusBlock, focusOffset + offsetChange]
             }
-          );
+          )
         }
 
-        return true;
+        return true
       }
     }
-  };
+  }
 }
