@@ -1,8 +1,8 @@
 const HEADING = /^(#{1,6}) /
-const HR = /^(-{3,}|\*{3,}|_{3,})$/
+const HR = /^(-{3,}|_{3,})$/
 const TODO_ITEM = /^(\s*)(- \[(?: |x)\])( )/
 const ORDERED_ITEM = /^(\s*)(\d+)(\.) /
-const UNORDERED_ITEM = /^(\s*)([*-]) /
+const UNORDERED_ITEM = /^(\s*)([-]) /
 const BLOCKQUOTE = /^(>) /
 
 function matchLine(regex, type) {

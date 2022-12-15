@@ -6,7 +6,7 @@ import {
 
 const PREFIXES = {
   blockquote: '> ',
-  unordered_list_item: '* ',
+  unordered_list_item: '- ',
   ordered_list_item: str => `${parseInt(str) + 1}. `,
   todo_item: '- [ ] '
 }

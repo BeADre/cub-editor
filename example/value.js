@@ -2,11 +2,11 @@ export default `# Writing on the web
 Just some sample text, that demonstrates **bold text**, _italic text_, ~underlined text~, and ~~strikethrough~~.
 
 It is also possible to [Link to websites](https://example.com), have \`inline code\`, and use separators:
-***
+___
 
 #hashtags can be used to organize, even with #multiple words#
 
-* lists can be useful
+- lists can be useful
 - to list multiple things
 
 1. And they can be ordered
