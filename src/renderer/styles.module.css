@@ -3,9 +3,10 @@
   --base-text-color: rgba(66, 66, 66, 1.00);
   --light-text-color: rgba(136, 136, 136, 1.00);
   --title-text-color: rgba(51, 51, 51, 1.00);
-  --link-text-color: rgba(221, 76, 79, 1.00);
-  --accent-text-color: rgba(214, 85, 95, 1.00);
-  --insertion-point-color: rgba(224, 109, 114, 1.00);
+  --link-text-color: rgba(13, 163, 94, 1);
+  --accent-text-color: #ffa923;
+  --insertion-point-color: rgb(19, 189, 110);
+  --block-quote-color: #c6e5cc;
   --selected-text-background-color: rgba(180, 216, 254, 1.00);
   --selected-text-inactive-background-color: rgba(220, 220, 220, 1.00);
   --style-marker-text-color: rgba(180, 180, 180, 1.00);
@@ -18,10 +19,11 @@
   --hashtag-selected-background-color: rgba(120, 158, 194, 1.00);
   --checkbox-fill-color: rgba(255, 255, 255, 1.00);
   --checkbox-stroke-color: rgba(180, 180, 180, 1.00);
-  --checkbox-check-color: rgba(85, 85, 85, 1.00);
-  --highlighter-background-color: rgba(211, 255, 164, 1.00);
-  --highlighter-marker-color: rgba(145, 212, 76, 1.00);
-  --code-background-color: rgba(255, 255, 255, 1.00);
+  --checkbox-check-color: #ccc;
+  --checkbox-check-fill-color: #f3f4f5;
+  --highlighter-background-color: #e7f649;
+  --highlighter-marker-color: #ccc;
+  --code-background-color: #e9eaea;
   --code-stroke-color: rgba(221, 221, 221, 1.00);
   --code-font-color: rgba(84, 84, 84, 1.00);
   --syntax-keyword: rgba(0, 135, 178, 1.00);
@@ -40,8 +42,6 @@
   --base-text-size-ios: 16px;
   --monospace-font-adjust: -2px;
   --line-height-multiplier: 1.5;
-  --line-width-multiplier: 80;
-  --paragraph-spacing-multiplier: 0.0;
   --h1-font-size-multiplier: 1.5;
   --h2-font-size-multiplier: 1.3;
   --h3-font-size-multiplier: 1.1000000000000001;
@@ -52,23 +52,22 @@ html, body {
   min-height: 100vh;
   font-family: var(--paragraph-font);
   background: var(--background-text-color);
+  tab-size: 5;
 }
-
-
 
 .editor {
   /* Don't collapse whitespace */
-	white-space: pre-wrap;
+  white-space: pre-wrap;
   /* Individual ligatures can't be selected in all browsers */
-	font-variant-ligatures: none;
+  font-variant-ligatures: none;
 
-  max-width: 480px;
+  max-width: 720px;
   padding: 16px 44px 90vh;
-	--line-height: calc(1.1em * var(--line-height-multiplier));
+  --line-height: calc(1.1em * var(--line-height-multiplier));
   line-height: var(--line-height);
-	min-height: var(--line-height);
-	margin: 0 auto;
-	--font-size: var(--base-text-size);
+  min-height: var(--line-height);
+  margin: 0 auto;
+  --font-size: var(--base-text-size);
   font-size: var(--font-size);
   caret-color: var(--insertion-point-color);
   color: var(--base-text-color);
@@ -94,7 +93,7 @@ html, body {
   width: 100%;
   border: none;
   border-top: 1px solid var(--separator-text-color);
-  margin: 11px 0 6px;
+  margin: 16px 0;
 }
 
 .ordered_list_item {
@@ -112,20 +111,21 @@ html, body {
 }
 
 .unordered_list_item {
-  text-indent: -1.7em;
+  text-indent: -1.4em;
   list-style: none;
 }
 
 .unordered_list_item_dot {
   color: transparent;
-  padding-right: 14px;
+  padding-right: 10px;
   position: relative;
 }
+
 .unordered_list_item_dot:before {
   content: "";
   position: absolute;
   color: var(--accent-text-color);
-  left: 6px;
+  left: 0;
   top: calc(50% - var(--size) / 2);
   --size: 5px;
   height: var(--size);
@@ -141,18 +141,18 @@ html, body {
 
 .code_block {
   margin: 1px -1px 0;
-	display: block;
-	font-family: var(--monospace-font), monospace;
-	white-space: pre-wrap;
-	background: var(--code-background-color);
-	border: 1px solid var(--code-stroke-color);
-	color: var(--code-font-color);
-	border-radius: 3px;
-	padding: 1px 13px 0;
-	font-size: calc(1em + var(--monospace-font-adjust));
-	-webkit-tab-size: 2;
-	-moz-tab-size: 2;
-	tab-size: 2;
+  display: block;
+  font-family: var(--monospace-font), monospace;
+  white-space: pre-wrap;
+  background: var(--code-background-color);
+  border: 1px solid var(--code-stroke-color);
+  color: var(--code-font-color);
+  border-radius: 3px;
+  padding: 1px 13px 0;
+  font-size: calc(1em + var(--monospace-font-adjust));
+  -webkit-tab-size: 2;
+  -moz-tab-size: 2;
+  tab-size: 2;
 }
 
 .code_language {
@@ -168,11 +168,10 @@ html, body {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   text-indent: 0;
-	background: var(--code-background-color);
-	border: 1px solid var(--code-stroke-color);
-	color: var(--code-font-color);
-	border-radius: 2px;
-	padding: 3px 2px;
+  background: var(--code-background-color);
+  color: var(--code-font-color);
+  border-radius: 2px;
+  padding: 3px 2px;
   margin: 0 -1px;
   line-height: calc(.9 * var(--line-height));
 }
@@ -191,23 +190,27 @@ html, body {
 }
 
 .code_span_inner {
-	font-family: var(--monospace-font), monospace;
-	font-size: calc(1em + var(--monospace-font-adjust));
+  font-family: var(--monospace-font), monospace;
+  font-size: calc(1em + var(--monospace-font-adjust));
 }
 
 .mark {
-	background: var(--highlighter-background-color);
-	color: inherit;
+  background: transparent;
+  color: inherit;
   text-indent: 0;
-  line-height: calc(.95 * var(--line-height));
+  line-height: calc(0.95 * var(--line-height));
   padding: 2px 0;
 }
 
 .mark_markup {
-	color: var(--highlighter-marker-color);
-	font-weight: 600;
-	letter-spacing: 2px;
+  color: var(--highlighter-marker-color);
+  font-weight: 600;
+  letter-spacing: 2px;
   padding-left: 2px;
+}
+
+.mark_content {
+  background: var(--highlighter-background-color);
 }
 
 .reference {
@@ -220,7 +223,7 @@ html, body {
 
 .heading {
   font-weight: var(--title-font-weight);
-	margin: 0;
+  margin: 0;
   text-indent: calc(var(--font-size) * -1.5);
   font-size: 1em;
   line-height: var(--line-height);
@@ -232,12 +235,14 @@ html, body {
   margin-top: -1px;
   line-height: calc(var(--line-height) * .9);
 }
+
 .h2 {
   font-size: calc(1em * var(--h2-font-size-multiplier));
   margin-bottom: .65em;
   margin-top: -1px;
   line-height: calc(var(--line-height) * .9);
 }
+
 .h3 {
   font-size: calc(1em * var(--h3-font-size-multiplier));
   line-height: calc(var(--line-height) * .9);
@@ -256,6 +261,7 @@ html, body {
   border: 0;
   font-family: inherit;
 }
+
 .heading_button:focus {
   outline: none;
 }
@@ -296,6 +302,7 @@ html, body {
   border: 0;
   transform: translateY(2px);
 }
+
 .link_button:focus {
   outline: none;
 }
@@ -303,6 +310,7 @@ html, body {
 .link_nowrap {
   white-space: nowrap;
 }
+
 .link_nowrap:before {
   /* Enable wrapping before */
   content: "";
@@ -328,7 +336,7 @@ html, body {
 }
 
 .underline {
-  text-decoration-color: var(--accent-text-color);
+  text-decoration-color: var(--link-text-color);
 }
 
 .strikethrough {
@@ -344,12 +352,13 @@ html, body {
 .blockquote:before {
   content: "";
   position: absolute;
-  background-color: var(--accent-text-color);
+  background-color: var(--block-quote-color);
   top: 3px;
   left: -17px;
   bottom: 4px;
-  width: 2px;
+  width: 4px;
 }
+
 .blockquote + .blockquote:before {
   top: -4px;
 }
@@ -359,14 +368,13 @@ html, body {
 }
 
 .todo_item {
-  text-indent: -32px;
+  text-indent: -24px;
   list-style: none;
-  padding-left: 8px;
+  padding-left: 0;
 }
 
 .todo_item_done {
   color: var(--light-text-color);
-  text-decoration: line-through;
 }
 
 .checkbox {
@@ -384,6 +392,7 @@ html, body {
   font: inherit;
   display: inline-block;
 }
+
 .checkbox:focus {
   outline: none;
 }
@@ -395,6 +404,10 @@ html, body {
 .checkbox_background {
   fill: var(--checkbox-fill-color);
   stroke: var(--checkbox-stroke-color);
+}
+
+.checkbox[aria-checked='true'] .checkbox_background {
+  fill: var(--checkbox-check-fill-color);
 }
 
 .image {

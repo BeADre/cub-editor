@@ -56,9 +56,9 @@ function create(CHARS, type, richContent = true, contentRequired = false) {
   }
 }
 
-export const em = create(['*', '_'], 'em')
+export const em = create(['*'], 'em')
 export const strong = create(['**', '__'], 'strong')
-export const underline = create(['~'], 'underline')
+export const underline = create(['_'], 'underline')
 export const strikethrough = create(['~~'], 'strikethrough')
 export const mark = create(['::'], 'mark')
 export const reference = create([{ open: '[[', close: ']]'}], 'reference')

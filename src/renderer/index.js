@@ -247,7 +247,7 @@ export default {
     return (
       <mark class={styles.mark}>
         <span class={styles.mark_markup}>{content[0]}</span>
-        {content.slice(1, -1)}
+        <span class={styles.mark_content}>{content.slice(1, -1)}</span>
         <span class={styles.mark_markup}>{last(content)}</span>
       </mark>
     )
