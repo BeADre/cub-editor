@@ -315,10 +315,10 @@ export function replaceSelection(editor, text = '') {
     return false
   })
 
-  const addedText = firstBlock + addedBlocks < 0 ?
-    '' :
-    serializeState(newState[firstBlock + addedBlocks].content)
-      .split('\n').slice(0, startLines).join('\n').length
+  const state = serializeState(newState[firstBlock + addedBlocks].content)
+  const length = addedBlocks ? state.split('\n').slice(0, startLines).join('\n').length : state.length
+
+  const addedText = firstBlock + addedBlocks < 0 ? '' : length
 
   editor.update(
     newState,
