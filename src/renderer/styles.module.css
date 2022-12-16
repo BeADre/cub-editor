@@ -103,6 +103,14 @@ html, body {
 
 .ordered_list_item_number {
   color: var(--accent-text-color);
+  font-size: 0;
+  line-height: 0;
+}
+
+.ordered_list_item_number:after {
+  content: attr(data-tag);
+  color: var(--accent-text-color);
+  font-size: var(--font-size);
 }
 
 .ordered_list_item_dot {

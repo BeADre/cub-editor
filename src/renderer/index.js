@@ -2,8 +2,7 @@
 /** @jsxFrag Fragment */
 import {
   /* eslint-disable-next-line no-unused-vars */
-  h, Fragment,
-  cls, last, formatURL
+  h, Fragment, cls, last, formatURL, transformLevel
 } from './helpers.js'
 import styles from './styles.module.css'
 import { get as getFileURL } from './files.js'
@@ -73,10 +72,12 @@ export default {
     )
   },
   ordered_list_item({ content: [indentation, level, markup, ...content] }) {
+    const dataTag = transformLevel(indentation, level)
+
     return (
       <li class={styles.ordered_list_item}>
         {indentation}
-        <span class={styles.ordered_list_item_number}>{level}</span>
+        <span class={styles.ordered_list_item_number} data-tag={dataTag}>{level}</span>
         <span class={styles.ordered_list_item_dot}>{markup}</span>{content}
       </li>
     )

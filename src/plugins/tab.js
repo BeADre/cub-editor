@@ -49,7 +49,10 @@ export default function tabPlugin() {
           } = editor.selection
 
           const offsetChange = event.shiftKey ? -1 : 1
-          const text = selectedBlocks.map(block => {
+          const text = selectedBlocks.map((block) => {
+            if (selectedBlocks.length === 1 && block.type === 'ordered_list_item') {
+              block.content[1] = '1'
+            }
             const text = serializeState(block.content)
 
             if (event.shiftKey) return text.replace(INDENTATION, '')

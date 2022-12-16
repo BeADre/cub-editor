@@ -1,4 +1,5 @@
 export const Fragment = Symbol('Fragment')
+export { transformLevel } from './orderer-list'
 
 const SVG_ELEMENTS = ['svg', 'path']
 

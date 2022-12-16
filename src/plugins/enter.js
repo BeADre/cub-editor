@@ -56,12 +56,39 @@ export default function enterPlugin() {
           Object.keys(PREFIXES).includes(editor.state[firstBlock].type) &&
           shouldRemoveBlock(editor.state[firstBlock])
         ) {
+          let parserValue = ''
+          const { content, type } = editor.state[firstBlock]
+          const tabLength = content[0].split('\t').length - 1
+
+          if (tabLength > 1) {
+            let block = firstBlock
+            while (block > 1) {
+              block -= 1
+              const { content: prevContent, type: prevType } = editor.state[block]
+
+              if (prevType !== type) continue
+
+              const prevTabLength = prevContent[0].split('\t').length - 1
+
+              if (prevTabLength === tabLength - 1) {
+                const newContent = [...prevContent]
+                newContent.splice(prevContent.length - 1, 1, ' ')
+
+                if (type === 'ordered_list_item') newContent[1] = +prevContent[1] + 1
+
+                newContent[0] = Array(prevTabLength).fill('\t').join('')
+                parserValue = newContent.join('')
+                break
+              }
+            }
+          }
+
           editor.update([
             ...editor.state.slice(0, firstBlock),
             // Generate block from empty line
-            editor.parser('').next().value,
+            editor.parser(parserValue).next().value,
             ...editor.state.slice(firstBlock + 1)
-          ], [firstBlock, 0])
+          ], [firstBlock, parserValue.length])
 
           return true
         }
