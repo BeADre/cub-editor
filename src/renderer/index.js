@@ -315,5 +315,19 @@ export default {
         </div>
       </button>
     )
+  },
+  email({ content }) {
+    return (
+      <a onclick={onLinkClick} href={`mailto:${content}`} class={styles.link}>
+        {content}
+      </a>
+    )
+  },
+  url({ content }) {
+    return (
+      <a onclick={onLinkClick} href={content} class={styles.link}>
+        {content}
+      </a>
+    )
   }
 }

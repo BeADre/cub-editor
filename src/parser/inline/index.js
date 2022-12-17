@@ -12,6 +12,7 @@ import {
 } from './basic.js'
 
 import link from './link.js'
+import parseToLink from './parseToLink.js'
 import selfcloseTag from './tag.js'
 
 function text(state) {
@@ -58,6 +59,8 @@ export default function parseInline(string) {
       if (result) break
     }
   }
+
+  parseToLink(state)
 
   return state.tokens
 }
