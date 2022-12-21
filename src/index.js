@@ -3,6 +3,7 @@ import renderer from './renderer/index.js'
 import styles from './renderer/styles.module.css'
 import parser from './parser/block/index.js'
 import enterPlugin from './plugins/enter.js'
+import backspacePlugin from './plugins/backspace.js'
 import tabPlugin from './plugins/tab.js'
 import historyPlugin from './plugins/history.js'
 import highlightPlugin from './plugins/highlight.js'
@@ -16,6 +17,7 @@ export default class DefaultEditor extends Editor {
 
     const plugins = [
       enterPlugin(),
+      backspacePlugin(),
       tabPlugin(),
       historyPlugin(),
       highlightPlugin(),
