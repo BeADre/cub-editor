@@ -158,38 +158,38 @@ function onSelectionChange(editor) {
 /**
  * Correct caret position if the line is now in a prior block
  */
-// function updateCaret(editor, state, [block, offset]) {
-//   let lineIndex = editor.state.slice(0, block + 1)
-//     .reduce((acc, val) => acc + val.length, 0)
-//   const newBlock = state.findIndex(block => {
-//     if (lineIndex <= block.length) return true
-//     lineIndex -= block.length
-//     return false
-//   })
-//   if (newBlock === -1) return
-//   if (newBlock >= block) return
-//
-//   const newOffset = serializeState(state[newBlock].content).split('\n')
-//     .slice(0, block - newBlock).join('\n').length + 1 + offset
-//
-//   return [newBlock, newOffset]
-// }
+function updateCaret(editor, state, [block, offset]) {
+  let lineIndex = editor.state.slice(0, block + 1)
+    .reduce((acc, val) => acc + val.length, 0)
+  const newBlock = state.findIndex(block => {
+    if (lineIndex <= block.length) return true
+    lineIndex -= block.length
+    return false
+  })
+  if (newBlock === -1) return
+  if (newBlock >= block) return
 
-// function onBeforeUpdate(editor, state, caret) {
-// if (!editor.state.length) return
-//
-// const anchor = updateCaret(editor, state, caret.anchor)
-// const focus = updateCaret(editor, state, caret.focus)
-// if (!anchor && !focus) return
-//
-// return {
-//   state,
-//   caret: {
-//     anchor: anchor || caret.anchor,
-//     focus: focus || caret.focus
-//   }
-// }
-// }
+  const newOffset = serializeState(state[newBlock].content).split('\n')
+    .slice(0, block - newBlock).join('\n').length + 1 + offset
+
+  return [newBlock, newOffset]
+}
+
+function onBeforeUpdate(editor, state, caret) {
+  if (!editor.state.length) return
+
+  const anchor = updateCaret(editor, state, caret.anchor)
+  const focus = updateCaret(editor, state, caret.focus)
+  if (!anchor && !focus) return
+
+  return {
+    state,
+    caret: {
+      anchor: anchor || caret.anchor,
+      focus: focus || caret.focus
+    }
+  }
+}
 
 export default {
   handlers: {
@@ -201,6 +201,6 @@ export default {
     copy: onCopy,
     paste: onPaste,
     selectionchange: onSelectionChange
-  }
-  // beforeupdate: onBeforeUpdate
+  },
+  beforeupdate: onBeforeUpdate
 }
