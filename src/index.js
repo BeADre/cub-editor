@@ -10,6 +10,7 @@ import highlightPlugin from './plugins/highlight.js'
 import formatPlugin from './plugins/format.js'
 import orderedListPlugin from './plugins/ordered-list.js'
 import dropPlugin from './plugins/drop.js'
+import savePlugin from './plugins/save.js'
 
 export default class DefaultEditor extends Editor {
   constructor({ element, value } = {}) {
@@ -19,6 +20,7 @@ export default class DefaultEditor extends Editor {
       enterPlugin(),
       backspacePlugin(),
       tabPlugin(),
+      savePlugin(),
       historyPlugin(),
       highlightPlugin(),
       formatPlugin(),

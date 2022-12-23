@@ -1,4 +1,6 @@
-export default '# 个人信息\n' +
+export default '**如果你喜欢的话你也可以在此编辑你自己的简历，`Ctrl/Command + S` 保存， `Ctrl/Command + P` 导出pdf**\n' +
+'\n' +
+'# 个人信息\n' +
 '- 王浩/男/1996\n' +
 '- 本科/宜宾学院/机械电子\n' +
 '- 手机：15775973717\n' +
@@ -78,7 +80,7 @@ export default '# 个人信息\n' +
 '- [项目地址](https://github.com/varletjs/varlet)\n' +
 '- [文档地址](https://varlet.gitee.io/varlet-ui/#/zh-CN/index)\n' +
 '- 项目成绩：\n' +
-'     -  **尤雨溪2021年Vue conf line 推荐移动端框架**\n' +
+'     - **尤雨溪2021年Vue conf line 推荐移动端框架**\n' +
 '     - **入选2022年Gitee最有价值开源项目**\n' +
 '### element-plus（Contributor）\n' +
 '- star：**18011**\n' +
