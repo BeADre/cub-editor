@@ -4,45 +4,29 @@ import { setOffset } from '../core/shared.js'
 import Prism from 'prismjs'
 
 // Languages
-import 'prismjs/components/prism-apacheconf.js'
-import 'prismjs/components/prism-c.js'
-import 'prismjs/components/prism-cpp.js'
-import 'prismjs/components/prism-csharp.js'
-import 'prismjs/components/prism-coffeescript.js'
-import 'prismjs/components/prism-css.js'
-import 'prismjs/components/prism-go.js'
-import 'prismjs/components/prism-java.js'
-import 'prismjs/components/prism-javascript.js'
-import 'prismjs/components/prism-typescript.js'
-import 'prismjs/components/prism-json.js'
-import 'prismjs/components/prism-lua.js'
-import 'prismjs/components/prism-matlab.js'
-import 'prismjs/components/prism-objectivec.js'
-import 'prismjs/components/prism-perl.js'
-import 'prismjs/components/prism-php.js'
-import 'prismjs/components/prism-python.js'
-import 'prismjs/components/prism-r.js'
-import 'prismjs/components/prism-ruby.js'
-import 'prismjs/components/prism-scala.js'
-import 'prismjs/components/prism-scss.js'
-import 'prismjs/components/prism-bash.js'
-import 'prismjs/components/prism-sql.js'
-import 'prismjs/components/prism-swift.js'
-import 'prismjs/components/prism-latex.js'
+import 'prismjs/components/prism-c.min.js'
+import 'prismjs/components/prism-cpp.min.js'
+import 'prismjs/components/prism-css.min.js'
+import 'prismjs/components/prism-dart.min.js'
+import 'prismjs/components/prism-go.min.js'
+import 'prismjs/components/prism-java.min.js'
+import 'prismjs/components/prism-javascript.min.js'
+import 'prismjs/components/prism-typescript.min.js'
+import 'prismjs/components/prism-json.min.js'
+import 'prismjs/components/prism-php.min.js'
+import 'prismjs/components/prism-python.min.js'
+import 'prismjs/components/prism-bash.min.js'
+import 'prismjs/components/prism-sql.min.js'
+import 'prismjs/components/prism-swift.min.js'
 
 // Language aliases
 Object.assign(Prism.languages, {
-  apache: Prism.languages.apacheconf,
   'c++': Prism.languages.cpp,
   'c#': Prism.languages.csharp,
   golang: Prism.languages.go,
-  mat: Prism.languages.matlab,
-  objc: Prism.languages.objectivec,
   py: Prism.languages.python,
-  sc: Prism.languages.scala,
   sh: Prism.languages.bash,
   shell: Prism.languages.bash,
-  tex: Prism.languages.latex,
   js: Prism.languages.javascript,
   ts: Prism.languages.typescript
 })
