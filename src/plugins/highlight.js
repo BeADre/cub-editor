@@ -13,6 +13,7 @@ import 'prismjs/components/prism-css.js'
 import 'prismjs/components/prism-go.js'
 import 'prismjs/components/prism-java.js'
 import 'prismjs/components/prism-javascript.js'
+import 'prismjs/components/prism-typescript.js'
 import 'prismjs/components/prism-json.js'
 import 'prismjs/components/prism-lua.js'
 import 'prismjs/components/prism-matlab.js'
@@ -41,7 +42,9 @@ Object.assign(Prism.languages, {
   sc: Prism.languages.scala,
   sh: Prism.languages.bash,
   shell: Prism.languages.bash,
-  tex: Prism.languages.latex
+  tex: Prism.languages.latex,
+  js: Prism.languages.javascript,
+  ts: Prism.languages.typescript
 })
 
 /**
