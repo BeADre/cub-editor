@@ -55,6 +55,12 @@ html, body {
   tab-size: 5;
 }
 
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
 h1,
 h2,
 h3,
