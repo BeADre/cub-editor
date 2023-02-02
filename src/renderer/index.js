@@ -30,10 +30,6 @@ function onLinkClick() {
   window.open(href, '_blank')
 }
 
-function onLinkButtonClick(event) {
-  console.log('Link button click', event)
-}
-
 function selectElement() {
   const selection = this.getRootNode().getSelection()
 
