@@ -311,6 +311,7 @@ h6 {
 
 .icon {
   fill: var(--checkbox-check-color);
+  color: var(--checkbox-check-color);
 }
 
 .link {
